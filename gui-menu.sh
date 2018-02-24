@@ -16,7 +16,7 @@ dialogs="dialog kdialog zenity"
 my_dial=none
 for dial in $dialogs
 do
-	if [ ! -z $dial ]
+	if [ ! -z $(which $dial) ]
 	then
 		my_dial=$dial
 	fi
@@ -29,11 +29,11 @@ function display_info(){
 	local t=${3-Output} 	# box title 	
 	case $my_dial in
 		dialog) dialog --backtitle "non sono bello ma patcho - Laboratorio di Calcolo Numerico" --title "${t}" --clear --msgbox "$(<$OUTPUT)" ${h} ${w};;
-		kdialog) kdialog --msgbox --title "${t}" --msgbox "$(<$OUTPUT)" --gemometry ${h}x${w};;
-		zenity) zenity --info --title "${t}" --text "$(<$OUTPUT)" --width=${w} --height=${h};;
+		kdialog) kdialog --msgbox --title "${t}" --msgbox "$(<$OUTPUT)" --geometry ${h}x${w};;
+		zenity) zenity --info --title "${t}" --text "$(<$OUTPUT)" --width=${w}0 --height=${h}0;;
 	esac
 }
 
 # main
 echo "Grazie per aver scelto non sono bello ma patcho" > $OUTPUT
-display_info 50 50 "bye"
+display_info 5 51 "bye"
